@@ -27,6 +27,7 @@ try {
     console.log(filePaths)
 
     for(let p in filePaths){
+        console.log("Searching "+ p);
         fs.readFile(p, function (err, data) {
             if (err) throw err;
             if(data.includes(keyword)){
