@@ -39,7 +39,7 @@ jobs:
           extension-filter: '.js'
           pass-fail: 'true'
       - name: Display Result
-        run: echo " ${{ steps.keyword-scan.outputs.results }}"
+        run: echo " ${{ steps.codebase-scanner.outputs.results }}"
 
 
 ```
