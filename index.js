@@ -7,13 +7,24 @@ try {
     const keyword = core.getInput('scan-keyword');
     console.log(`Keyword: ${keyword}!`);
 
-    console.log("<<<START>>>");
-    fs.readdir('../codebase', (err, files) => {
-        files.forEach(file => {
-            console.log(file);
-        });
-    });
-    console.log("<<<EOF>>>");
+    function getFiles (dir, files_){
+        files_ = files_ || [];
+        let files = fs.readdirSync(dir);
+        for (let i in files){
+            let name = dir + '/' + files[i];
+            if (fs.statSync(name).isDirectory()){
+                getFiles(name, files_);
+            } else {
+                files_.push(name);
+            }
+        }
+        return files_;
+    }
+
+    console.log(getFiles('.'))
+
+    let currentPath = process.cwd();
+    console.log(currentPath);
     core.setOutput("result", "<none>");
 
 
