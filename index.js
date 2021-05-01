@@ -19,12 +19,11 @@ try {
                 var msg;
                 msg = String('Found "' + res.matches[0] + '" ' + res.count
                     + ' times in "' + result + '"');
-                scanResult = scanResult.concat('\n', msg);
+                scanResult = String(scanResult + '\n' + msg);
                 console.log(scanResult);
             }
         });
-    console.log(scanResult);
-    core.setOutput('results', String(scanResult.toString()));
+    core.setOutput('results', `${scanResult}`);
 } catch (error) {
     core.setFailed(error.message);
 }
