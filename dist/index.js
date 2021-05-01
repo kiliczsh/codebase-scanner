@@ -8598,11 +8598,13 @@ try {
         .then(function(results) {
             for (let result in results) {
                 let res = results[result];
-                let msg = 'Found "' + res.matches[0] + '" ' + res.count
-                    + ' times in "' + result + '"';
-                scanResult = scanResult + msg + "\n";
+                var msg;
+                msg = String('Found "' + res.matches[0] + '" ' + res.count
+                    + ' times in "' + result + '"');
+                scanResult = scanResult.concat('\n', msg);
             }
         });
+    console.log("RESULT");
     console.log(scanResult);
     core.setOutput("result", scanResult);
 } catch (error) {
