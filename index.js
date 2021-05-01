@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
+var fif = require('find-in-files');
 
 try {
 
@@ -9,45 +10,22 @@ try {
     console.log(`Keyword: ${keyword}!`);
     console.log(`Codebase Path: ${codebasepath}!`);
 
-
-    let currentPath = process.cwd();
-    console.log(currentPath);
-
-    function getFiles (dir, files_){
-        files_ = files_ || [];
-        let files = fs.readdirSync(dir);
-        for (let i in files){
-            let name = dir + '/' + files[i];
-            if (fs.statSync(name).isDirectory()){
-                getFiles(name, files_);
-            } else {
-                files_.push(name);
-            }
-        }
-        return files_;
-    }
-
-    let filePaths = getFiles(codebasepath);
-    console.log(filePaths)
-    console.log(typeof(filePaths))
-    console.log("Starting...");
-    for (var i = 0; i < filePaths.length; i++) {
-        console.log("Searching "+ filePaths[i]);
-        fs.readFile(filePaths[i], function (err, data) {
-            if (err) throw err;
-            if(data.includes(keyword)){
-                console.log(data);
+    fif.find(keyword, codebasepath, '.js$')
+        .then(function(results) {
+            core.setOutput("result", results);
+            for (let result in results) {
+                let res = results[result];
+                console.log(
+                    'Found "' + res.matches[0] + '" ' + res.count
+                    + ' times in "' + result + '"'
+                );
             }
         });
-    }
 
-
-    core.setOutput("result", "<none>");
-
-
-
-    //const payload = JSON.stringify(github.context.payload, undefined, 2)
-    //console.log(`The event payload: ${payload}`);
+    // let currentPath = process.cwd();
+    // console.log(currentPath);
+    // const payload = JSON.stringify(github.context.payload, undefined, 2)
+    // console.log(`The event payload: ${payload}`);
 } catch (error) {
     core.setFailed(error.message);
 }
