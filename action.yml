@@ -1,5 +1,8 @@
-name: 'Code Scanner'
+name: 'Codebase Scanner'
 description: 'Scan codebase for existence scan keyword'
+branding:
+  icon: 'log-out'
+  color: 'red'
 inputs:
   scan-keyword:
     description: 'Keyword to search in codebase'
