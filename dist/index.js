@@ -8590,8 +8590,8 @@ try {
     const keywordInput = core.getInput('scan-keyword');
     const codebasepathInput = core.getInput('codebase-path');
     const extensionInput = core.getInput('extension-filter');
-    const failBuildInput = core.getInput('fail-build');
-    let failBuild = failBuildInput === 'true';
+    const failBuildInput = core.getInput('pass-fail');
+    let failBuild = failBuildInput === 'true' ;
     extensionInput.concat('$');
     console.log(`Searching for ${keywordInput} in ${codebasepathInput}!`);
 

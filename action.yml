@@ -13,7 +13,7 @@ inputs:
     description: 'Filter extension for files'
     required: false
     default: '.js'
-  fail-build:
+  pass-fail:
     description: 'Option to fail build if keyword exists'
     required: false
     default: 'true'
