@@ -7,25 +7,22 @@ try {
 
     const keyword = core.getInput('scan-keyword');
     const codebasepath = core.getInput('codebase-path');
-    console.log(`Keyword: ${keyword}!`);
-    console.log(`Codebase Path: ${codebasepath}!`);
+    console.log(`Searching for ${keyword} in ${codebasepath}!`);
 
+    let scanResult = "";
     fif.find(keyword, codebasepath, '.js$')
         .then(function(results) {
-            core.setOutput("result", results);
             for (let result in results) {
                 let res = results[result];
-                console.log(
-                    'Found "' + res.matches[0] + '" ' + res.count
-                    + ' times in "' + result + '"'
-                );
+                let msg = 'Found "' + res.matches[0] + '" ' + res.count
+                    + ' times in "' + result + '"';
+                scanResult += msg + "\r\n";
             }
         });
-
-    // let currentPath = process.cwd();
-    // console.log(currentPath);
-    // const payload = JSON.stringify(github.context.payload, undefined, 2)
-    // console.log(`The event payload: ${payload}`);
+    if(scanResult === ""){
+        scanResult = "No results found!";
+    }
+    console.log(scanResult);
 } catch (error) {
     core.setFailed(error.message);
 }
