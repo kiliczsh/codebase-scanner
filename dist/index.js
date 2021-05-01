@@ -6067,7 +6067,17 @@ try {
         return files_;
     }
 
-    console.log(getFiles(codebasepath))
+    let filePaths = getFiles(codebasepath);
+    console.log(filePaths)
+
+    for(let p in filePaths){
+        fs.readFile(p, function (err, data) {
+            if (err) throw err;
+            if(data.includes(keyword)){
+                console.log(data);
+            }
+        });
+    }
 
     let currentPath = process.cwd();
     console.log(currentPath);
