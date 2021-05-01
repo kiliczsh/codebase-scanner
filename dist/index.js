@@ -8591,7 +8591,7 @@ try {
     const codebasepath = core.getInput('codebase-path');
     console.log(`Searching for ${keyword} in ${codebasepath}!`);
 
-    let scanResult = "";
+    let scanResult = null;
     fif.find(keyword, codebasepath, '.js$')
         .then(function(results) {
             for (let result in results) {
@@ -8601,7 +8601,7 @@ try {
                 scanResult += msg + "\r\n";
             }
         });
-    if(scanResult === ""){
+    if(scanResult === null){
         scanResult = "No results found!";
     }
     console.log(scanResult);
