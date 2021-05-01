@@ -13,6 +13,10 @@ inputs:
     description: 'Filter extension for files'
     required: false
     default: '.js'
+  fail-build:
+    description: 'Option to fail build if keyword exists'
+    required: false
+    default: 'true'
 outputs:
   results:
     description: 'The list of scan-keyword input in codebase'

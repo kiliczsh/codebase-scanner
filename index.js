@@ -5,14 +5,16 @@ var fif = require('find-in-files');
 
 try {
 
-    const keyword = core.getInput('scan-keyword');
-    const codebasepath = core.getInput('codebase-path');
-    const extension = core.getInput('extension-filter');
-    extension.concat('$');
-    console.log(`Searching for ${keyword} in ${codebasepath}!`);
+    const keywordInput = core.getInput('scan-keyword');
+    const codebasepathInput = core.getInput('codebase-path');
+    const extensionInput = core.getInput('extension-filter');
+    const failBuildInput = core.getInput('fail-build');
+    let failBuild = failBuildInput === 'true';
+    extensionInput.concat('$');
+    console.log(`Searching for ${keywordInput} in ${codebasepathInput}!`);
 
     let scanResult = "";
-    fif.find(keyword, codebasepath, extension)
+    fif.find(keywordInput, codebasepathInput, extensionInput)
         .then(function(results) {
             for (let result in results) {
                 let res = results[result];
@@ -20,7 +22,15 @@ try {
                 scanResult = String(`${scanResult} \n ${msg}`);
                 console.log(scanResult);
             }
-            core.setOutput('results', `${scanResult.toString()}`);
+
+            if(scanResult === ''){
+                core.setOutput('results', `${keywordInput} is not exists in ${codebasepathInput}`);
+            }else{
+                core.setOutput('results', `${scanResult.toString()}`);
+                if (failBuild) {
+                    core.setFailed(`Remove ${keywordInput} from your ${codebasepathInput}`);
+                }
+            }
         });
 } catch (error) {
     core.setFailed(error.message);
