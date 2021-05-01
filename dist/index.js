@@ -8605,7 +8605,7 @@ try {
             }
         });
     console.log(scanResult);
-    core.setOutput('results', scanResult);
+    core.setOutput('results', String(scanResult.toString()));
 } catch (error) {
     core.setFailed(error.message);
 }
