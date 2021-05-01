@@ -8600,7 +8600,9 @@ try {
                 let res = results[result];
                 let msg = 'Found "' + res.matches[0] + '" ' + res.count
                     + ' times in "' + result + '"';
+                console.log(msg);
                 scanResult.concat(msg+ "\r\n");
+                console.log(scanResult);
             }
         });
     console.log(scanResult);
