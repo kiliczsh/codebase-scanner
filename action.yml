@@ -1,0 +1,13 @@
+name: 'Code Scanner'
+description: 'Scan codebase for existence scan keyword'
+inputs:
+  scan-keyword:
+    description: 'Keyword to search in codebase'
+    required: false
+    default: 'console.log'
+outputs:
+  result:
+    description: 'The list of scan-keyword input in codebase'
+runs:
+  using: 'node12'
+  main: 'index.js'
