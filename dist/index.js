@@ -8593,19 +8593,18 @@ try {
     extension.concat('$');
     console.log(`Searching for ${keyword} in ${codebasepath}!`);
 
-    var scanResult = "";
+    let scanResult = "";
     fif.find(keyword, codebasepath, extension)
         .then(function(results) {
             for (let result in results) {
                 let res = results[result];
-                var msg;
-                msg = String('Found "' + res.matches[0] + '" ' + res.count
-                    + ' times in "' + result + '"');
-                scanResult = String(scanResult + '\n' + msg);
+                let msg = String(`Found '${res.matches[0]}'  ${res.count} times in '${result}'`);
+                scanResult = String(`${scanResult} \n ${msg}`);
                 console.log(scanResult);
             }
         });
     core.setOutput('results', `${scanResult}`);
+
 } catch (error) {
     core.setFailed(error.message);
 }
