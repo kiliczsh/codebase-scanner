@@ -6044,15 +6044,26 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(127);
 const github = __nccwpck_require__(134);
+const fs = __nccwpck_require__(747);
 
 try {
 
     const keyword = core.getInput('scan-keyword');
     console.log(`Keyword: ${keyword}!`);
+
+    console.log("<<<START>>>");
+    fs.readdir('../codebase', (err, files) => {
+        files.forEach(file => {
+            console.log(file);
+        });
+    });
+    console.log("<<<EOF>>>");
     core.setOutput("result", "<none>");
 
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
+
+
+    //const payload = JSON.stringify(github.context.payload, undefined, 2)
+    //console.log(`The event payload: ${payload}`);
 } catch (error) {
     core.setFailed(error.message);
 }
