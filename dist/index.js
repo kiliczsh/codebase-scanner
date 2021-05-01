@@ -8601,18 +8601,11 @@ try {
                 var msg;
                 msg = String('Found "' + res.matches[0] + '" ' + res.count
                     + ' times in "' + result + '"');
-                console.log("msg");
-                console.log(msg);
-                console.log("scanResult");
-                console.log(scanResult);
                 scanResult = scanResult.concat('\n', msg);
-                console.log("scanResult");
-                console.log(scanResult);
             }
         });
-    console.log("RESULT");
     console.log(scanResult);
-    core.setOutput("result", scanResult);
+    core.setOutput('results', scanResult);
 } catch (error) {
     core.setFailed(error.message);
 }

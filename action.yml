@@ -14,7 +14,7 @@ inputs:
     required: false
     default: '.js'
 outputs:
-  result:
+  results:
     description: 'The list of scan-keyword input in codebase'
 runs:
   using: 'node12'
