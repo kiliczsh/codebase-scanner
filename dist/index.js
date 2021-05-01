@@ -8602,6 +8602,7 @@ try {
                 msg = String('Found "' + res.matches[0] + '" ' + res.count
                     + ' times in "' + result + '"');
                 scanResult = scanResult.concat('\n', msg);
+                console.log(scanResult);
             }
         });
     console.log(scanResult);
