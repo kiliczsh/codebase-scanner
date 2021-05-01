@@ -9,6 +9,10 @@ try {
     console.log(`Keyword: ${keyword}!`);
     console.log(`Codebase Path: ${codebasepath}!`);
 
+
+    let currentPath = process.cwd();
+    console.log(currentPath);
+
     function getFiles (dir, files_){
         files_ = files_ || [];
         let files = fs.readdirSync(dir);
@@ -25,10 +29,11 @@ try {
 
     let filePaths = getFiles(codebasepath);
     console.log(filePaths)
-
-    for(let p in filePaths){
-        console.log("Searching "+ p);
-        fs.readFile(p, function (err, data) {
+    console.log(typeof(filePaths))
+    console.log("Starting...");
+    for(let path in filePaths){
+        console.log("Searching "+ path);
+        fs.readFile(path, function (err, data) {
             if (err) throw err;
             if(data.includes(keyword)){
                 console.log(data);
@@ -36,8 +41,7 @@ try {
         });
     }
 
-    let currentPath = process.cwd();
-    console.log(currentPath);
+
     core.setOutput("result", "<none>");
 
 
