@@ -18,7 +18,7 @@ try {
                 let res = results[result];
                 let msg = 'Found "' + res.matches[0] + '" ' + res.count
                     + ' times in "' + result + '"';
-                scanResult = scanResult.concat(msg).concat("\n");
+                scanResult = scanResult + msg + "\n";
             }
         });
     console.log(scanResult);
