@@ -31,9 +31,9 @@ try {
     console.log(filePaths)
     console.log(typeof(filePaths))
     console.log("Starting...");
-    for(let path in filePaths){
-        console.log("Searching "+ path);
-        fs.readFile(path, function (err, data) {
+    for (var i = 0; i < filePaths.length; i++) {
+        console.log("Searching "+ filePaths[i]);
+        fs.readFile(filePaths[i], function (err, data) {
             if (err) throw err;
             if(data.includes(keyword)){
                 console.log(data);
