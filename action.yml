@@ -1,4 +1,4 @@
-name: 'Code Scanner'
+name: 'Codebase Scanner'
 description: 'Scan codebase for existence scan keyword'
 branding:
   icon: 'log-out'
