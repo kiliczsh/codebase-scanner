@@ -20,9 +20,8 @@ try {
                 scanResult = String(`${scanResult} \n ${msg}`);
                 console.log(scanResult);
             }
+            core.setOutput('results', `${scanResult.toString()}`);
         });
-    core.setOutput('results', `${scanResult}`);
-
 } catch (error) {
     core.setFailed(error.message);
 }
