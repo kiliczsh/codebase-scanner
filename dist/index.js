@@ -6049,7 +6049,9 @@ const fs = __nccwpck_require__(747);
 try {
 
     const keyword = core.getInput('scan-keyword');
+    const codebasepath = core.getInput('codebase-path');
     console.log(`Keyword: ${keyword}!`);
+    console.log(`Codebase Path: ${codebasepath}!`);
 
     function getFiles (dir, files_){
         files_ = files_ || [];
@@ -6065,7 +6067,7 @@ try {
         return files_;
     }
 
-    console.log(getFiles('.'))
+    console.log(getFiles(codebasepath))
 
     let currentPath = process.cwd();
     console.log(currentPath);

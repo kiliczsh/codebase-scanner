@@ -5,6 +5,10 @@ inputs:
     description: 'Keyword to search in codebase'
     required: false
     default: 'console.log'
+  codebase-path:
+    description: 'Path to search for codebase'
+    required: false
+    default: '.'
 outputs:
   result:
     description: 'The list of scan-keyword input in codebase'
