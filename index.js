@@ -11,16 +11,14 @@ try {
     extension.concat('$');
     console.log(`Searching for ${keyword} in ${codebasepath}!`);
 
-    let scanResult = "";
+    var scanResult = "";
     fif.find(keyword, codebasepath, extension)
         .then(function(results) {
             for (let result in results) {
                 let res = results[result];
                 let msg = 'Found "' + res.matches[0] + '" ' + res.count
                     + ' times in "' + result + '"';
-                console.log(msg);
-                scanResult.concat(msg+ "\r\n");
-                console.log(scanResult);
+                scanResult = scanResult.concat(msg).concat("\n");
             }
         });
     console.log(scanResult);
