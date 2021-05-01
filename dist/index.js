@@ -8589,22 +8589,22 @@ try {
 
     const keyword = core.getInput('scan-keyword');
     const codebasepath = core.getInput('codebase-path');
+    const extension = core.getInput('extension-filter');
+    extension.concat('$');
     console.log(`Searching for ${keyword} in ${codebasepath}!`);
 
-    let scanResult = null;
-    fif.find(keyword, codebasepath, '.js$')
+    let scanResult = "";
+    fif.find(keyword, codebasepath, extension)
         .then(function(results) {
             for (let result in results) {
                 let res = results[result];
                 let msg = 'Found "' + res.matches[0] + '" ' + res.count
                     + ' times in "' + result + '"';
-                scanResult += msg + "\r\n";
+                scanResult.concat(msg+ "\r\n");
             }
         });
-    if(scanResult === null){
-        scanResult = "No results found!";
-    }
     console.log(scanResult);
+    core.setOutput("result", scanResult);
 } catch (error) {
     core.setFailed(error.message);
 }

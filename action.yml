@@ -9,6 +9,10 @@ inputs:
     description: 'Path to search for codebase'
     required: false
     default: '.'
+  extension-filter:
+    description: 'Filter extension for files'
+    required: false
+    default: '.js'
 outputs:
   result:
     description: 'The list of scan-keyword input in codebase'
